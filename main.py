@@ -52,11 +52,7 @@ st.subheader('SRC20 Collection Data', divider='red')
 
 st.dataframe(token_data, use_container_width=True)
 
-st.subheader('BOS Allocations Calculated', divider='red')
-
-st.dataframe(alloc_data, use_container_width=True)
-
-with st.expander("See explanation"):
+with st.expander("See complete unfiltered data"):
     st.dataframe(merged_data, use_container_width=True)
 
 # code = code if code else "# STAMP Collection Data"
