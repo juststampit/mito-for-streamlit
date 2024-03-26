@@ -8,15 +8,15 @@ from mitosheet.streamlit.v1.spreadsheet import _get_mito_backend
 st.set_page_config(layout="wide")
 
 @st.cache_data
-def get_tesla_data():
-    df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/tesla-stock-price.csv')
-    df = df.drop(0)
-    df['volume'] = df['volume'].astype(float)
+def get_collection_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/juststampit/bos-dao-airdrop/main/data/final/collections.csv')
+    df = df.drop('count_all_nft_holders.collection_count.csv', axis=1)
+    # df['volume'] = df['volume'].astype(float)
     return df
 
-tesla_data = get_tesla_data()
+collection_data = get_collection_data()
 
-new_dfs, code = spreadsheet(tesla_data)
+new_dfs, code = spreadsheet(collection_data)
 code = code if code else "# Edit the spreadsheet above to generate code"
 st.code(code)
 
