@@ -2,8 +2,6 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 import streamlit as st
-import pandas_profiling
-from streamlit_pandas_profiling import st_profile_report
 
 # from mitosheet.streamlit.v1 import spreadsheet
 # from mitosheet.streamlit.v1.spreadsheet import _get_mito_backend
@@ -44,11 +42,6 @@ collection_data = get_collection_data()
 token_data = get_token_data()
 alloc_data = get_alloc_data()
 merged_data = get_merged_data()
-pr = merged_data.profile_report()
-
-st.subheader('Data Profile', divider='red')
-
-st_profile_report(pr)
 
 # new_dfs, code = spreadsheet(collection_data)
 st.subheader('STAMP Collection Data', divider='red')
@@ -63,6 +56,8 @@ st.subheader('BOS Allocations Calculated', divider='red')
 
 st.dataframe(alloc_data, use_container_width=True)
 
+with st.expander("See explanation"):
+    st.dataframe(merged_data, use_container_width=True)
 
 # code = code if code else "# STAMP Collection Data"
 # st.code(code)
