@@ -8,7 +8,7 @@ from streamlit_pandas_profiling import st_profile_report
 # from mitosheet.streamlit.v1 import spreadsheet
 # from mitosheet.streamlit.v1.spreadsheet import _get_mito_backend
 
-st.set_page_config(layout="wide", toolbarMode="minimal")
+st.set_page_config(layout="wide")
 
 @st.cache_data
 def get_collection_data():
