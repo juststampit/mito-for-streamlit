@@ -43,8 +43,11 @@ def get_merged_data():
 collection_data = get_collection_data()
 token_data = get_token_data()
 alloc_data = get_alloc_data()
+merged_data_profile = get_merged_data()
 
-st_profile_report(get_merged_data())
+st.subheader('Data Profile', divider='red')
+
+st_profile_report(merged_data_profile)
 
 # new_dfs, code = spreadsheet(collection_data)
 st.subheader('STAMP Collection Data', divider='red')
