@@ -2,10 +2,13 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 import streamlit as st
-from mitosheet.streamlit.v1 import spreadsheet
-from mitosheet.streamlit.v1.spreadsheet import _get_mito_backend
+import pandas_profiling
+from streamlit_pandas_profiling import st_profile_report
 
-st.set_page_config(layout="wide")
+# from mitosheet.streamlit.v1 import spreadsheet
+# from mitosheet.streamlit.v1.spreadsheet import _get_mito_backend
+
+st.set_page_config(layout="wide", toolbarMode="minimal")
 
 @st.cache_data
 def get_collection_data():
@@ -28,9 +31,20 @@ def get_alloc_data():
     # df['volume'] = df['volume'].astype(float)
     return df
 
+@st.cache_data
+def get_merged_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/juststampit/bos-dao-airdrop/main/data/final/merged.csv')
+    #df = df[['address', 'Eligible Tokens Held', 'SPAD_Bonus', 'ALLOC_1', 'BOOK OF STAMPS', 'ALLOC_2', 'stamp_count_unique', 'ALLOC_3', 'TOTAL ALLOC']]
+    # df['volume'] = df['volume'].astype(float)
+    pr = df.profile_report()
+
+    return pr
+
 collection_data = get_collection_data()
 token_data = get_token_data()
 alloc_data = get_alloc_data()
+
+st_profile_report(get_merged_data())
 
 # new_dfs, code = spreadsheet(collection_data)
 st.subheader('STAMP Collection Data', divider='red')
