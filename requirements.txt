@@ -3,3 +3,4 @@ mitosheet
 pandas
 pygwalker
 streamlit-pandas-profiling
+streamlit-extras
