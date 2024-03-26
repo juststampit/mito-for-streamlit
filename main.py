@@ -14,9 +14,21 @@ def get_collection_data():
     # df['volume'] = df['volume'].astype(float)
     return df
 
+@st.cache_data
+def get_token_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/juststampit/bos-dao-airdrop/main/data/final/tokens.csv')
+    df = df.drop('eligible', axis=1)
+    # df['volume'] = df['volume'].astype(float)
+    return df
+
 collection_data = get_collection_data()
+token_data = get_token_data()
 
 new_dfs, code = spreadsheet(collection_data)
+
+st.dataframe(collection_data)
+st.dataframe(token_data)
+
 code = code if code else "# STAMP Collection Data"
 st.code(code)
 
