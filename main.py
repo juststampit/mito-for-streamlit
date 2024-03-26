@@ -36,18 +36,19 @@ def get_merged_data():
     df = pd.read_csv('https://raw.githubusercontent.com/juststampit/bos-dao-airdrop/main/data/final/merged.csv')
     #df = df[['address', 'Eligible Tokens Held', 'SPAD_Bonus', 'ALLOC_1', 'BOOK OF STAMPS', 'ALLOC_2', 'stamp_count_unique', 'ALLOC_3', 'TOTAL ALLOC']]
     # df['volume'] = df['volume'].astype(float)
-    pr = df.profile_report()
+    # pr = df.profile_report()
 
-    return pr
+    return df
 
 collection_data = get_collection_data()
 token_data = get_token_data()
 alloc_data = get_alloc_data()
-merged_data_profile = get_merged_data()
+merged_data = get_merged_data()
+pr = merged_data.profile_report()
 
 st.subheader('Data Profile', divider='red')
 
-st_profile_report(merged_data_profile)
+st_profile_report(pr)
 
 # new_dfs, code = spreadsheet(collection_data)
 st.subheader('STAMP Collection Data', divider='red')
