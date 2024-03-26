@@ -21,8 +21,16 @@ def get_token_data():
     # df['volume'] = df['volume'].astype(float)
     return df
 
+@st.cache_data
+def get_alloc_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/juststampit/bos-dao-airdrop/main/data/final/BOS.draft.csv')
+    df = df[['address', 'Eligible Tokens Held', 'SPAD_Bonus', 'ALLOC_1', 'BOOK OF STAMPS', 'ALLOC_2', 'stamp_count_unique', 'ALLOC_3', 'TOTAL ALLOC']]
+    # df['volume'] = df['volume'].astype(float)
+    return df
+
 collection_data = get_collection_data()
 token_data = get_token_data()
+alloc_data = get_alloc_data()
 
 # new_dfs, code = spreadsheet(collection_data)
 st.subheader('STAMP Collection Data', divider='red')
@@ -32,6 +40,11 @@ st.dataframe(collection_data, use_container_width=True)
 st.subheader('SRC20 Collection Data', divider='red')
 
 st.dataframe(token_data, use_container_width=True)
+
+st.subheader('BOS Allocations Calculated', divider='red')
+
+st.dataframe(alloc_data, use_container_width=True)
+
 
 # code = code if code else "# STAMP Collection Data"
 # st.code(code)
