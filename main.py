@@ -17,7 +17,7 @@ def get_collection_data():
 collection_data = get_collection_data()
 
 new_dfs, code = spreadsheet(collection_data)
-code = code if code else "# Edit the spreadsheet above to generate code"
+code = code if code else "# STAMP Collection Data"
 st.code(code)
 
 def clear_mito_backend_cache():
